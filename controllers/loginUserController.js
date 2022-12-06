@@ -25,6 +25,7 @@ const loginUser = (req, res) => {
                             }
 
                             let id = user.id;
+                            let role = user.role;
 
                             // Création du jéton pour chaque user avec jwt
                             const jeton = jwt.sign(
@@ -36,7 +37,7 @@ const loginUser = (req, res) => {
                             db.users.update({ connect: 1 }, { where: { email: req.body.email } })
                                 .then(responnse => {
                                     const message = `L'utilisateur a été connecté avec succès`;
-                                    res.json({ message, jeton, id, });
+                                    res.json({ message, jeton, id, role });
                                 })
                                 .catch(errors => {
                                     return res.json({ Erreur: errors });

@@ -17,7 +17,7 @@ const getAllUsers = (req, res) => {
 };
 
 const addUser = async (req, res) => {
-    const { nom, email, numberPhone } = req.body;
+    const { nom, email, numberPhone, role } = req.body;
 
     try {
         const password = await bcrypt.hash(req.body.password, 10);
@@ -36,6 +36,7 @@ const addUser = async (req, res) => {
                     dataUser.nom = nom;
                     dataUser.email = email;
                     dataUser.password = password;
+                    dataUser.role = role;
 
                     USER.create(dataUser).then(value => {
                         let message = `Utilisateur créé avec succès`;

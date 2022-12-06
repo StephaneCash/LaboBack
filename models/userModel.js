@@ -24,6 +24,9 @@ module.exports = (sequelize, DataTypes) => {
                 notNull: { msg: "Password est un champ obligatoire !" }
             }
         },
+        role: {
+            type: DataTypes.STRING
+        }
     })
 
     return User
